@@ -112,17 +112,34 @@ public abstract class java_template {
 	System.out.println(output);
     }
     
-    private void append(String str) {
+    protected void append(String str) {
 	output.append(str);
 	output.append(space);
     }
 
-    private void appendLn(String str) {
+    protected void appendLn(String str) {
 	output.append(str);
 	output.append(lineBreak);
     }
 
-    private String assign(String value) {
+    protected String assign(String value) {
 	return  "this." + value + " = " + value + ";";
+    }
+
+    protected String appendType(String value, String type) {
+	switch(type) {
+	case "boolean":
+	    if(value.matches("((Y|y)es)|((T|t)rue)"))
+		return "true";
+	    else if (value.matches("((N|n)o)|((F|f)alse)"))
+		return "false";
+	    else throw new IllegalArgumentException("value '" + value + "'of type boolean does not match boolean patterns");
+	case "String":
+	    value = value.replaceAll("\"", "");
+	    value = "\"" + value + "\"";
+	    return value;
+	default:
+	    return value;
+	}
     }
 }

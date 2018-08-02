@@ -1,0 +1,9 @@
+Manufacturer, Commercially Available, Name, Model Number, Battery Type, Usable Capacity (kWh), Output (kW), RRP (NZ), Efficiency (%), Needs Inverter, Inverter
+Tesla, No, Tesla Powerwall, Tesla Powerwall [6.4 kWh], Lithium-Ion, 5.44, 2.0, 0, 92.5, No, Built-in inverter
+Tesla, Yes, Tesla Powerwall 2, Tesla Powerwall 2 [14 kWh], Lithium-Ion, 13.5, 5, 18000, 90, No, Built-in inverter
+LG, Yes, LG Chem RESU, LG Chem RESU 6.4 EX [6.4 kWh], Lithium, 5.12, 4.2, 9995, 95, Yes, Must buy inverter separately
+Panasonic, Yes, Panasonic, Panasoic LJ-SK84A [8.4 kWh], Lithium-Ion, 8.0, 2.0, 13000, 86, Yes, Built-in inverter
+Enphase, Yes, Enphase AC Battery, Enphase AC Battery [1.2 kWh], Lithium Iron Phosphate, 2.4, 0.260, 2450,  96, No, Must buy inverter separately
+SolaX, Yes, SolaX-Box, SolaX X-HYBRID SERIES [4.8 kWh], Lithium-Ion, 4.8, 4.6, 9995, 97, Yes, Built-in inverter
+Sonnen, Yes, Sonnen 8.6 Eco, Sonnen 8.6 Eco [8.6 kWh], Lithium-Ion Phosphate, 6.0, 2.4, 13600, 86, Yes, Built-in inverter
+LG, Yes, LG Chem RESU6.5, LG Chem RESU6.5 [6.5 kWh], Lithium-Ion, 5.9, 4.3, 8500, 95, Yes, Built-in inverter

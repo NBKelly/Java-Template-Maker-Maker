@@ -51,30 +51,39 @@ public class java_template_generator {
 	//get the indices
 	sc.next();
 
-	while(!sc.next().equals("StartLine")) {
-	    indices.add(sc.next());
+	String indexStr = "";
+	while(!(indexStr = sc.next()).equals("StartLine")) {
+	    indices.add(indexStr);
 	}
 
 	String startLine = sc.next();
 
-	createTemplate(typeName, typeAccess);
+	if(indices.size() != varTypes.size()) {
+	    System.err.println("Error: number of arguments does not match number of indices");
+	    return;
+	}
+
+	
+	createTemplate(typeName, typeAccess, delim, startLine, indices);
 
 	System.out.println(builder);
     }
 
     static StringBuilder builder = new StringBuilder();
     
-    private static void createTemplate(String className, String classAccess) {
+    private static void createTemplate(String className, String classAccess, String delimiter, String startLine, ArrayList<String> indices) {
 	String proper_classname = className + "_template";
 
 	//create header and the inherited property access functions
+	appendl("import java.util.Scanner;");
 	appends("public");
 	appends("class");
 	appends(proper_classname);
 	appendl("extends java_template {");
 	appendl("    @Override protected String className() { return \"" + className + "\"; }");
 	appendl("    @Override protected String classAccess() { return \"" + classAccess + "\"; }");
-
+	appendl();
+	
 	//create the main method
 	appendl("    public static void main(String[] argv) {");
 	append("        ");
@@ -90,16 +99,44 @@ public class java_template_generator {
 	appendl("        val.makeClass();");
 	appendl("        val.print();");
 	appendl("    }");
-	//create the insertvalues function
+	appendl();
 
-	appendl("    @Override void InsertValues(){ }");
+	//create the insertvalues function
+	appendl("    @Override void InsertValues(){");
+	appendl("        Scanner sc = new Scanner(System.in);");
+	appendl("        for(int i = 1; i < " + startLine + "; i++) { sc.nextLine(); } //skip any headers as defined in conf");
+
+	append( "        appendLn(");
+	appendq("    " + className + "[] data = {");
+	appendl(");");
+
+	appendl("        while(sc.hasNextLine()) {");
+	appendl("            String[] s = sc.nextLine().split(\"" + delimiter + "\");");
+	appendl();
+	appendl( "            append(\"        new " + className + "(\");");		
+	for(int i = 0; i < indices.size();i++) {
+	    appendl("            append(appendType(s[" + indices.get(i) + "], \"" + varTypes.get(i) + "\"));"); 
+	    if(i != indices.size() - 1)
+		appendl("            append(\", \");");
+	    else
+		appendl("            append(\")\");");
+	}
+	appendl("            if (sc.hasNextLine()) ");
+	appendl("                appendLn(\",\");");
+	appendl("            else appendLn(\"\");");
+	appendl("        };");
+	appendl("        appendLn(\"    };\");");
+	appendl("        sc.close();");
+	appendl("    }");
 	//end
 	appendl("}");
     }
 
-    private static void append(String str) { builder.append(str); }
-    private static void appends(String str) { builder.append(str + " "); }
+    private static void append (String str) { builder.append(str);        }
+    private static void appends(String str) { builder.append(str + " ");  }
     private static void appendl(String str) { builder.append(str + "\n"); }
+    private static void appendl(          ) { builder.append(      "\n"); }
+    private static void appendq(String str) { builder.append("\"" + str + "\""); }
 }
 
 
