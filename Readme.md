@@ -1,4 +1,4 @@
-### Java class generator generator
+### Java template maker maker
 
 This is a set of java classes that serve the following purpose:
 
@@ -33,6 +33,18 @@ This configuration file consists of the following:
 ..3 data type
 ..4 variable name
 4. InsertValues keyword, following by a delimiter (between '_ and _')
-5. Indices keyword, followed by inline list of indices
+5. Indices keyword, followed by inline list of indices. In this case, index 0 is the string res, index 1 is the boolean truthValue, etc
 ..* The list of indices must have a length equal to the list of variables
 6. StartLine keyword, followed by the line of the file that the values start at
+
+Once this is sorted, you can run the script process.sh like so:
+
+```
+./process.sh Battery.conf Battery_list.csv
+```
+
+This will generate the intermediate class Battery_Template, which will be run to generate the class Battery.
+
+It will also deliver some output afterwards showing you the class.
+
+There is no robust error checking.
