@@ -37,10 +37,21 @@ public class java_template_generator {
 	while((scVal = sc.next()).equals("var")) {
 	    varAccesses.add(sc.next());
 	    varTypes.add(sc.next());
-	    varNames.add(sc.next());
+	    String str = sc.next();
+
+	    if(str.equals("data")) {
+		System.err.println("Err: data is a reserved variable name :DDD");
+		System.exit(0);
+	    }
+	    
+	    varNames.add(str);
 	    sc.nextLine();
 	}
 
+	varAccesses.add("private");
+	varTypes.add(typeName + "[]");
+	varNames.add("data");
+	
 	String delim = sc.nextLine();
 	int start = delim.indexOf("'_");
 	delim = delim.substring(start + 2);
@@ -58,7 +69,9 @@ public class java_template_generator {
 
 	String startLine = sc.next();
 
-	if(indices.size() != varTypes.size()) {
+	if(indices.size() != varTypes.size() - 1) {
+	    System.err.println("ind: " + indices.size());
+	    System.err.println("var: " + varTypes.size());
 	    System.err.println("Error: number of arguments does not match number of indices");
 	    return;
 	}
@@ -138,27 +151,3 @@ public class java_template_generator {
     private static void appendl(          ) { builder.append(      "\n"); }
     private static void appendq(String str) { builder.append("\"" + str + "\""); }
 }
-
-
-/*
-  public class java_template_impl extends java_template{
-
-    private String out_name = "test";
-    private String out_access = "public";
-
-    @Override protected String className() { return out_name; }
-    @Override protected String classAccess() { return out_access; }
-
-    //purpose of InsertValues: insert values based on the content of some file
-    //this is to be implemented by a user
-    @Override protected void InsertValues() {}
-
-    public static void main(String[] argv) {
-	java_template_impl impl = new java_template_impl();
-	impl.addProperty("public", "String", "res");
-	impl.addProperty("public", "String", "res2");
-	impl.makeClass();
-	impl.print();
-    }
-  }
-*/

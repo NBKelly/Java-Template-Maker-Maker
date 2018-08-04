@@ -31,7 +31,7 @@ public abstract class java_template {
 	appendLn("{");
 
 	//step two: parameters
-	for(int index = 0; index < names.size(); index++) {
+	for(int index = 0; index < names.size() - 1; index++) {
 	    append(spacer);
 	    append(access.get(index));
 	    append(types.get(index));
@@ -46,9 +46,9 @@ public abstract class java_template {
 	append(className());
 	append("(");
 
-	for(int index = 0; index < names.size(); index++) {
+	for(int index = 0; index < names.size() - 1; index++) {
 	    append(types.get(index));
-	    append(names.get(index) + ((index == names.size() - 1 ) ? "" : ","));
+	    append(names.get(index) + ((index == names.size() - 2 ) ? "" : ","));
 	}
 
 	appendLn(") {");
@@ -59,6 +59,8 @@ public abstract class java_template {
 	    append(spacer);
 	    append(spacer);
 	    appendLn(assign(name));
+	    if(name.equals(names.get(names.size() - 1)))
+	       continue;
 	    //	    append("this." + name);
 	    //append("=");
 	    //appendLn(name + ";");
