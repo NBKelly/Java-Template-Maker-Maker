@@ -1,4 +1,6 @@
-public class java_template_impl extends java_template{
+//this is mainly presented as an example of a manual method,
+//and also used as a stepping-stone document for making the next layer of abstraction (template_maker)
+public class java_manual_template_impl extends java_template{
 
     private String out_name = "test";
     private String out_access = "public";
