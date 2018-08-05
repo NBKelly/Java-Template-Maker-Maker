@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
-    echo "usage: process.sh filename"
+    echo "usage: process.sh (filename - conf) (filename - data) "
     exit 1
 fi
 
@@ -18,3 +18,8 @@ cat $1 | java java_template_generator > "$line""_template.java"
 javac "$line""_template.java"
 cat $2 | java "$line""_template" > "$line.java"
 cat "$line.java"
+
+echo ""
+echo "Compiling generated class..."
+javac "$line.java"
+echo "done"
