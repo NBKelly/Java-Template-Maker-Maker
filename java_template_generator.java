@@ -5,7 +5,7 @@ public class java_template_generator {
     static ArrayList<String> varAccesses = new ArrayList<>();
     static ArrayList<String> varTypes = new ArrayList<>();
     static ArrayList<String> varNames = new ArrayList<>();
-
+    static ArrayList<String> varComments = new ArrayList<>();
     //Potential file format:
     //Name
     //Access
@@ -45,12 +45,14 @@ public class java_template_generator {
 	    }
 	    
 	    varNames.add(str);
-	    sc.nextLine();
+	    String comment = sc.nextLine();
+	    varComments.add(comment);
 	}
 
 	varAccesses.add("private");
 	varTypes.add(typeName + "[]");
 	varNames.add("data");
+	varComments.add("The generated data pulled from the accompanying file.");
 	
 	String delim = sc.nextLine();
 	int start = delim.indexOf("'_");
@@ -106,7 +108,10 @@ public class java_template_generator {
 	for(int index = 0; index < varAccesses.size(); index++) {
 	    append("        val.addProperty(\"");
 	    append(varAccesses.get(index) + "\", \"" + varTypes.get(index) + "\", \"");
-	    appendl(varNames.get(index) + "\");");
+	    if(varComments.get(index).length() > 4)
+		appendl(varNames.get(index) + "\", \"" + varComments.get(index) + "\");");
+	    else
+		appendl(varNames.get(index) + "\");");
 	}
 	
 	appendl("        val.makeClass();");
