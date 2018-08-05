@@ -4,6 +4,8 @@ public abstract class java_template {
     ArrayList<String> types = new ArrayList<>();
     ArrayList<String> names = new ArrayList<>();
     ArrayList<String> access = new ArrayList<>();
+    ArrayList<String> comments = new ArrayList<>();
+    
     private final char lineBreak = '\n';
     private final char space = ' ';
     private final String spacer = "   ";
@@ -13,11 +15,16 @@ public abstract class java_template {
     protected StringBuilder output = new StringBuilder();
     
     protected void addProperty(String access, String type, String name) {
+	addProperty(access, type, name, null);
+    }
+
+    protected void addProperty(String access, String type, String name, String comment) {
 	this.access.add(access);
 	this.types.add(type);
 	this.names.add(name);
+	this.comments.add(comment);
     }
-
+    
     abstract String className();
 
     abstract String classAccess();
@@ -32,10 +39,16 @@ public abstract class java_template {
 
 	//step two: parameters
 	for(int index = 0; index < names.size() - 1; index++) {
+	    if(comments.get(index) != null) {
+		append("  ");
+		appendLn(comments.get(index));
+	    }
+	    
 	    append(spacer);
 	    append(access.get(index));
 	    append(types.get(index));
-	    appendLn(names.get(index) + ";");	    
+	    appendLn(names.get(index) + ";");
+	    AppendLn();
 	}
 
 	//step three: initializer
