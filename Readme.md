@@ -14,12 +14,13 @@ Write a configuration file, like so:
 ```
 TestFile
 public
-var public String res
-var private String private_res
-var protected Integer tester
-var protected boolean truthValue
+var public String res //this is an optional comment
+var private String private_res //if the comment is less than four characters long (including tailing space and slashes)
+var protected Integer tester //
+var protected boolean truthValue //^ it will not be included
+var protected boolean duplicate
 InsertValues '_(, )|,_'
-Indices 0 2 7 1
+Indices 0 2 7 1 1
 StartLine 2
 ```
 
@@ -32,6 +33,7 @@ This configuration file consists of the following:
 ..2 accessability type
 ..3 data type
 ..4 variable name
+..5 optional comment
 4. InsertValues keyword, following by a delimiter (between '_ and _')
 5. Indices keyword, followed by inline list of indices. In this case, index 0 is the string res, index 1 is the boolean truthValue, etc
 ..* The list of indices must have a length equal to the list of variables
@@ -45,6 +47,13 @@ Once this is sorted, you can run the script process.sh like so:
 
 This will generate the intermediate class Battery_Template, which will be run to generate the class Battery.
 
-It will also deliver some output afterwards showing you the class.
+It will also deliver some output afterwards showing you the class and checking to see that it compiles.
+You can clean up all the generated files by running:
 
-There is no robust error checking.
+```
+./clean.sh Battery.conf
+```
+
+The config file is included so that the names of the files to delete can be determined.
+
+There is no robust error checking throughout the layers, though as far as I can tell, the structure of this program should be functional in most of the indended cases.
