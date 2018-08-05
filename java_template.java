@@ -48,7 +48,7 @@ public abstract class java_template {
 	    append(access.get(index));
 	    append(types.get(index));
 	    appendLn(names.get(index) + ";");
-	    AppendLn();
+	    appendLn("");
 	}
 
 	//step three: initializer
