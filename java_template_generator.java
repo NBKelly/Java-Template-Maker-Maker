@@ -49,9 +49,9 @@ public class java_template_generator {
 	    varComments.add(comment);
 	}
 
-	varAccesses.add("private");
+	varAccesses.add("private static final");
 	varTypes.add(typeName + "[]");
-	varNames.add("data");
+	varNames.add("DATA");
 	varComments.add("The generated data pulled from the accompanying file.");
 	
 	String delim = sc.nextLine();
@@ -125,7 +125,7 @@ public class java_template_generator {
 	appendl("        for(int i = 1; i < " + startLine + "; i++) { sc.nextLine(); } //skip any headers as defined in conf");
 
 	append( "        appendLn(");
-	appendq("    " + className + "[] data = {");
+	appendq("    private static final " + className + "[] DATA = {");
 	appendl(");");
 
 	appendl("        while(sc.hasNextLine()) {");

@@ -69,11 +69,12 @@ public abstract class java_template {
 	//initializer body
 	//format of each line: this.(name) = (name);
 	for(String name : names) {
+	    if(name.equals(names.get(names.size() - 1)))
+	       continue;
+
 	    append(spacer);
 	    append(spacer);
 	    appendLn(assign(name));
-	    if(name.equals(names.get(names.size() - 1)))
-	       continue;
 	    //	    append("this." + name);
 	    //append("=");
 	    //appendLn(name + ";");
@@ -91,6 +92,11 @@ public abstract class java_template {
 	    String type = types.get(index);
 	    String convertedName = Character.toUpperCase(name.charAt(0)) + name.substring(1);
 
+	    if(name.equals("DATA")) {
+		appendLn("    public static " + type +" GET_DATA() { return DATA; }");
+		continue;
+	    }
+	    
 	    //getter
 	    append(spacer);
 	    append("public");
