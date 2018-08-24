@@ -49,6 +49,11 @@ public class java_template_generator {
 	    varComments.add(comment);
 	}
 
+	varAccesses.add("private final");
+	varTypes.add("long");
+	varNames.add("id");
+	varComments.add(" //The unique id associated with the data");
+	
 	varAccesses.add("private static final");
 	varTypes.add(typeName + "[]");
 	varNames.add("DATA");
@@ -71,7 +76,7 @@ public class java_template_generator {
 
 	String startLine = sc.next();
 
-	if(indices.size() != varTypes.size() - 1) {
+	if(indices.size() != varTypes.size() - 2) {
 	    System.err.println("ind: " + indices.size());
 	    System.err.println("var: " + varTypes.size());
 	    System.err.println("Error: number of arguments does not match number of indices");
@@ -127,21 +132,35 @@ public class java_template_generator {
 	append( "        appendLn(");
 	appendq("    private static final " + className + "[] DATA = {");
 	appendl(");");
-
+	appendl("        int index = 0;");
 	appendl("        while(sc.hasNextLine()) {");
 	appendl("            String[] s = sc.nextLine().split(\"" + delimiter + "\");");
 	appendl();
 	appendl( "            append(\"        new " + className + "(\");");		
-	for(int i = 0; i < indices.size();i++) {
-	    appendl("            append(appendType(s[" + indices.get(i) + "], \"" + varTypes.get(i) + "\"));"); 
+
+	/*
+	  for(int i = 0; i < indices.size();i++) {
+	    appendl("            append(appendType(s[" + indices.get(i) + "], \"" + varTypes.get(i) + "\"));");
 	    if(i != indices.size() - 1)
-		appendl("            append(\", \");");
+		
 	    else
 		appendl("            append(\")\");");
 	}
+	*/
+
+	for(int i = 0; i < indices.size();i++) {
+	    appendl("            append(appendType(s[" + indices.get(i) + "], \"" + varTypes.get(i) + "\"));");
+	    appendl("            append(\", \");");
+	    
+	}
+
+	appendl("            append(appendType(\"\" + index, \"double\"));");
+	appendl("            append(\")\");");
+	
 	appendl("            if (sc.hasNextLine()) ");
 	appendl("                appendLn(\",\");");
 	appendl("            else appendLn(\"\");");
+	appendl("            index++;");
 	appendl("        };");
 	appendl("        appendLn(\"    };\");");
 	appendl("        sc.close();");

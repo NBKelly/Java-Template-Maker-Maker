@@ -105,15 +105,17 @@ public abstract class java_template {
 	    append("return " +name + ";");
 	    appendLn("}");
 
-	    //setter
-	    append(spacer);
-	    append("public void");
-	    append("set" + convertedName + "(");
-	    append(type);
-	    append(name);
-	    append(") {");
-	    append(assign(name));
-	    appendLn("}");
+	    //setter - special case for not making the setId command
+	    if(!name.equals("id")) {
+		append(spacer);
+		append("public void");
+		append("set" + convertedName + "(");
+		append(type);
+		append(name);
+		append(") {");
+		append(assign(name));
+		appendLn("}");
+	    }
 
 	    appendLn("");
 	}
