@@ -17,8 +17,8 @@ public
 var public String res //this is an optional comment
 var private String private_res //if the comment is less than four characters long (including tailing space and slashes)
 var protected Integer tester //
-var protected boolean truthValue //^ it will not be included
-var protected boolean duplicate
+var protected boolean truthValue //^ above will not be included, but this will.
+var protected boolean duplicate //don't use the variable names data or id, as these are already reserved
 InsertValues '_(, )|,_'
 Indices 0 2 7 1 1
 StartLine 2
