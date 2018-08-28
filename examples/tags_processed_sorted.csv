@@ -1,0 +1,18 @@
+ID,Heatpump,Cooking,Water Heating,Space Heating,Adults,Children,Income,Location,Solar,Yearly,Daily
+10483,No,Electricity,Mains Gas,Mains Gas,2,0,70k or more,City,No,2156984,5893
+11334,Yes,Electricity,Electricity,Electricity,3,0,70k or more,City,No,5918038,16169
+12114,No,Electricity,Electricity,Wood,1,0,20k-50k,Rural,No,4693881,12824
+12707,No,Electricity,Mains Gas,Fossil Fuels,2,0,20k-50k,City,No,4923171,13451
+12817,No,Mains Gas,Mains Gas,Mains Gas,2,0,50-70k,City,No,3804120,10393
+12877,No,Mains Gas,Mains Gas,Mains Gas,2,0,70k or more,City,Yes not sure Size,6209969,16967
+13307,No,Electricity,Electricity,Electricity & Wood,3,0,70k or more,City,No,9972745,27247
+13598,Yes,Electricity,Electricity,Electricity,3,0,50-70k,City,No,7769892,21229
+13928,Yes,Electricity & Bottled Gas,Electricity,Electricity & Wood,2,0,70k or more,Rural,No,4345074,11871
+14339,Yes,Electricity,Electricity,Electricity & Mains Gas & Fossil Fuels,2,0,70k or more,City,No,10921840,29841
+14853,Yes,Electricity,Electricity,Electricity & Wood,3,0,70k or more,Rural,No,7600257,20765
+16106,Yes,Electricity & Mains Gas,Mains Gas,Electricity & Mains Gas,4,1,50-70k,City,No,4435926,12120
+16423,No,Electricity & Mains Gas,Mains Gas,Electricity & Mains Gas,2,2,70k or more,City,No,10963266,29954
+17964,No,Electricity,Electricity & Wood,Electricity & Wood,4,1,70k or more,City,2 kW to 4 kW,13604224,37170
+18638,No,Electricity,Electricity,Electricity & Wood,3,0,70k or more,Rural,No,9730728,26586
+18800,No,Bottled Gas,Electricity,Electricity,2,0,70k or more,City,No,9518710,26007
+19189,No,Electricity,Mains Gas,Mains Gas,2,0,70k or more,City,No,5114138,13973
