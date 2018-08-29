@@ -13,13 +13,39 @@ echo "Input Data: $2"
 #run javac on our config file and generator-generator
 
 javac java_template_generator.java
-echo "$line""_template.java"
+echo "generating $line""_template.java..."
 cat $1 | java java_template_generator > "$line""_template.java"
+if [ $? -eq 0 ]; then
+    echo "done."
+else
+    echo "Failure."
+    exit 1
+fi
+echo "generating #line.java..."
 javac "$line""_template.java"
 cat $2 | java "$line""_template" > "$line.java"
-cat "$line.java"
-
+if [ $? -eq 0 ]; then
+    echo "done."
+else
+    echo "Failure."
+    exit 1
+fi
 echo ""
 echo "Compiling generated class..."
 javac "$line.java"
+if [ $? -eq 0 ]; then
+    echo "done"
+else
+    echo "failure"
+    exit 1
+fi
+less "$line.java"
+
+echo "cleaning up..."
+rm "$line""_template.java"
+rm "$line""_template.class"
+rm "java_template.class"
+rm "java_template_generator.class"
+rm "$line.class"
+
 echo "done"
