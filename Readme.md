@@ -7,6 +7,8 @@ This is a set of java classes that serve the following purpose:
 
 The reason I have written these (absolutely abhorrent) pieces of code is so I can generate java code from csv files, with hardcoded data structures, and all the getters and setters, for minimal effort. My time savings will likely be minimal compared to the time I spent writing this.
 
+Under no circumstances do I ever suggest you use this software.
+
 #### Usage
 
 Write a configuration file, like so:
@@ -15,7 +17,7 @@ Write a configuration file, like so:
 TestFile
 public
 var public String res //this is an optional comment
-var private String private_res //if the comment is less than four characters long (including tailing space and slashes)
+var private String private_res //if the comment is less than four characters long (including tailing space and slashes), it will not be included
 var protected Integer tester //
 var protected boolean truthValue //^ above will not be included, but this will.
 var protected boolean duplicate //don't use the variable names data or id, as these are already reserved
